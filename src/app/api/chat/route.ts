@@ -14,7 +14,8 @@ export async function POST(req: Request) {
     }
 
     const genAI = new GoogleGenerativeAI(apiKey);
-    const model = genAI.getGenerativeModel({ model: "gemini-pro" });
+    // Use gemini-1.5-flash which is faster and currently supported
+    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
     // Construct the prompt context based on Project Audit and "Livendo" identity
     const context = `
