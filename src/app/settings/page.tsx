@@ -8,6 +8,7 @@ import { Key, Server, Save, RotateCw, CheckCircle2, AlertCircle } from "lucide-r
 export default function SettingsPage() {
   const [apiKey, setApiKey] = useState("")
   const [serverStatus, setServerStatus] = useState<"checking" | "online" | "error">("checking")
+  const [errorMessage, setErrorMessage] = useState("")
   const [isSaved, setIsSaved] = useState(false)
 
   useEffect(() => {
@@ -20,15 +21,20 @@ export default function SettingsPage() {
   const checkServer = async () => {
     setServerStatus("checking")
     try {
-      // Simple ping to check if API route exists and responds (even with 400 it means route is up)
+      // Simple ping to check if API route exists and responds
       const res = await fetch("/api/chat", { 
         method: "POST", 
         body: JSON.stringify({ message: "Ping", history: [] }) 
       })
-      if (res.status === 500 || res.status === 404) throw new Error("Server Error")
+      
+      if (!res.ok) {
+        const data = await res.json()
+        throw new Error(data.details || "Server Error")
+      }
       setServerStatus("online")
-    } catch (e) {
+    } catch (e: any) {
       setServerStatus("error")
+      setErrorMessage(e.message)
     }
   }
 
@@ -67,10 +73,15 @@ export default function SettingsPage() {
                     </button>
                 </div>
                 {serverStatus === 'error' && (
-                    <p className="mt-2 text-xs text-red-400 flex items-center gap-1">
-                        <AlertCircle className="h-3 w-3" />
-                         Nelze se spojit s /api/chat. Zkontrolujte logy na Vercelu.
-                    </p>
+                    <div className="mt-3 p-3 bg-red-950/30 rounded border border-red-900/50">
+                        <p className="text-xs text-red-400 flex items-center gap-1 font-semibold">
+                            <AlertCircle className="h-3 w-3" />
+                             Chyba API:
+                        </p>
+                        <code className="block mt-1 text-[10px] text-red-300 font-mono break-all">
+                            {errorMessage || "Nelze se spojit s /api/chat. Zkontrolujte logy."}
+                        </code>
+                    </div>
                 )}
             </CardContent>
         </Card>

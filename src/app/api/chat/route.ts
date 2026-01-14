@@ -66,10 +66,14 @@ export async function POST(req: Request) {
 
     return NextResponse.json({ reply: text });
 
-  } catch (error) {
-    console.error("Gemini API Error:", error);
+  } catch (error: any) {
+    console.error("Gemini API Critical Error:", error);
     return NextResponse.json(
-      { error: "Failed to process request" },
+      { 
+        error: "Failed to process request", 
+        details: error.message || String(error),
+        stack: error.stack
+      },
       { status: 500 }
     );
   }
