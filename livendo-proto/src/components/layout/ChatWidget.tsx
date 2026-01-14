@@ -28,6 +28,14 @@ export function ChatWidget() {
     scrollToBottom()
   }, [messages])
 
+  // Auto-open chat after 5 seconds to demonstrate proactivity
+  useEffect(() => {
+      const timer = setTimeout(() => {
+          setIsOpen(true)
+      }, 5000)
+      return () => clearTimeout(timer)
+  }, [])
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     if (!input.trim() || isLoading) return

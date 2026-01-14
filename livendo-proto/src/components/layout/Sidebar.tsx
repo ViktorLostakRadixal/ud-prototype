@@ -93,6 +93,18 @@ export function Sidebar() {
                 Systém
             </div>
             <ul role="list" className="space-y-1">
+              <li>
+                  <Link
+                    href="/client"
+                    className="group flex gap-x-3 rounded-md border border-transparent p-2 text-sm leading-6 font-medium text-amber-500 hover:bg-white/5 hover:text-amber-400 transition-all duration-200"
+                  >
+                    <Users
+                      className="h-5 w-5 shrink-0 text-amber-500 group-hover:text-amber-400 transition-colors"
+                      aria-hidden="true"
+                    />
+                    Klientská zóna (Demo)
+                  </Link>
+              </li>
               {secondaryNavigation.map((item) => (
                 <li key={item.name}>
                   <Link
