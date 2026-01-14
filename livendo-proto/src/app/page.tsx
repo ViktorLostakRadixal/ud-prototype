@@ -121,6 +121,38 @@ export default function Home() {
             <EventStream />
         </div>
       </div>
+      
+      {/* Integrations Status Bar */}
+      <div className="grid grid-cols-4 gap-4 mt-8">
+            <div className="col-span-1 p-4 rounded-xl border border-dashed border-zinc-800 flex items-center justify-between text-zinc-500">
+                <span className="text-xs uppercase tracking-wider">Bank API</span>
+                <div className="flex items-center gap-2">
+                    <span className="text-xs text-emerald-500">Connected</span>
+                    <div className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse"></div>
+                </div>
+            </div>
+             <div className="col-span-1 p-4 rounded-xl border border-dashed border-zinc-800 flex items-center justify-between text-zinc-500">
+                <span className="text-xs uppercase tracking-wider">Katastr (RUIAN)</span>
+                 <div className="flex items-center gap-2">
+                    <span className="text-xs text-emerald-500">Synced 2m ago</span>
+                    <div className="h-1.5 w-1.5 rounded-full bg-emerald-500"></div>
+                </div>
+            </div>
+             <div className="col-span-1 p-4 rounded-xl border border-dashed border-zinc-800 flex items-center justify-between text-zinc-500">
+                <span className="text-xs uppercase tracking-wider">Homey App</span>
+                 <div className="flex items-center gap-2">
+                    <span className="text-xs text-indigo-400">Live Traffic</span>
+                    <div className="h-1.5 w-1.5 rounded-full bg-indigo-500 animate-ping"></div>
+                </div>
+            </div>
+             <div className="col-span-1 p-4 rounded-xl border border-dashed border-zinc-800 flex items-center justify-between text-zinc-500">
+                <span className="text-xs uppercase tracking-wider">Měřáky (IoT)</span>
+                 <div className="flex items-center gap-2">
+                    <span className="text-xs text-zinc-500">Connecting...</span>
+                    <div className="h-1.5 w-1.5 rounded-full bg-yellow-500"></div>
+                </div>
+            </div>
+      </div>
     </>
   )
 }

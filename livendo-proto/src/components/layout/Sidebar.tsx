@@ -35,7 +35,29 @@ export function Sidebar() {
 
       {/* Main Nav */}
       <nav className="flex-1 overflow-y-auto px-4 py-6">
+        {/* Ecosystem Switcher Visual */}
+        <div className="mb-8 px-2">
+            <div className="text-xs font-semibold leading-6 text-zinc-500 uppercase tracking-wider mb-3">
+                Propojené Systémy
+            </div>
+            <div className="space-y-2">
+                <div className="flex items-center gap-3 p-2 rounded-md bg-white/5 border border-white/5 opacity-50 hover:opacity-100 transition-opacity cursor-not-allowed">
+                    <div className="h-2 w-2 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.5)]"></div>
+                    <span className="text-sm font-medium text-zinc-300">Homey (Tenant App)</span>
+                </div>
+                 <div className="flex items-center gap-3 p-2 rounded-md bg-white/5 border border-white/5 opacity-75 hover:opacity-100 transition-opacity cursor-pointer">
+                    <div className="h-2 w-2 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.5)]"></div>
+                    <span className="text-sm font-medium text-zinc-300">UlovDomov.cz</span>
+                </div>
+                 <div className="flex items-center gap-3 p-2 rounded-md bg-white/5 border border-white/5 opacity-50 hover:opacity-100 transition-opacity cursor-pointer">
+                     <div className="h-2 w-2 rounded-full bg-yellow-500"></div>
+                     <span className="text-sm font-medium text-zinc-300">SIAN (Syncing...)</span>
+                </div>
+            </div>
+        </div>
+
         <ul role="list" className="space-y-1">
+
           <li>
             <div className="text-xs font-semibold leading-6 text-zinc-500 uppercase tracking-wider mb-2 px-2">
                 Menu
