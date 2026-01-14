@@ -3,13 +3,13 @@ import { NextResponse } from "next/server";
 
 export async function POST(req: Request) {
   try {
-    const { message, history } = await req.json();
-    const apiKey = process.env.GEMINI_API_KEY;
+    const { message, history, apiKey: clientApiKey } = await req.json();
+    const apiKey = process.env.GEMINI_API_KEY || clientApiKey;
 
     if (!apiKey) {
       return NextResponse.json(
-        { error: "API Key not configured. Please add GEMINI_API_KEY to .env.local" },
-        { status: 500 }
+        { error: "API Key not configured on server or client." },
+        { status: 401 }
       );
     }
 

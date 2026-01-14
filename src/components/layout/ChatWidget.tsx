@@ -46,12 +46,15 @@ export function ChatWidget() {
     setIsLoading(true)
 
     try {
+      const clientApiKey = localStorage.getItem("livendo_gemini_key")
+      
       const response = await fetch("/api/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           message: userMessage,
-          history: messages.map(m => ({ role: m.role, content: m.content }))
+          history: messages.map(m => ({ role: m.role, content: m.content })),
+          apiKey: clientApiKey // Send optional client override
         })
       })
 
